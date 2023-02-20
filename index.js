@@ -1,31 +1,49 @@
 // React;
 // ReactDOM;
 
-class Heading extends React.Component {
+class Counter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            count: 0,
+        };
+        // this.add = this.add.bind(this);
+        // this.sub = this.add.bind(this);  /// так ми пишемо в випадку коли  не використовуємо функцію стрілку
+    }
+    add = () => {
+            this.setState({ count: this.state.count + 1 });
+    };
+    sub = () => {
+        if (this.state.count > 0) {
+            this.setState({ count: this.state.count - 1 });
+        }
+    };
+
     render() {
-        console.log(this);
-        const { titleProps, classProps, children } = this.props;
+        const { count } = this.state;
+        const { classNameSection, classNameBtn } = this.props;
         return React.createElement(
-            "h2",
-            { title: titleProps, className: classProps },
-            "hi!!!  ",
-            ...children
+            "section",
+            { className:classNameSection },
+            React.createElement("h2", {}, count),
+            React.createElement(
+                "button",
+                { onClick: this.add, className: classNameBtn },
+                "+"
+            ),
+            React.createElement(
+                "button",
+                { onClick: this.sub, className: classNameBtn },
+                "-"
+            )
         );
     }
 }
 
-// const h1 = React.createElement("h1", { title: "title" }, "title:", "hello");
-
-const reactElement = React.createElement(
-    Heading,
-    {
-        titleProps: "title for 2",
-        classProps: "heading",
-    },
-    "children",
-    "123"
-);
-console.log(reactElement);
+const reactElement = React.createElement(Counter, {
+    classNameSection: "heading",
+    classNameBtn: "btn",
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(reactElement);

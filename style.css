@@ -1,4 +1,10 @@
-.heading{
-  font-size: 2.4rem;
-  color: teal;
+.heading {
+    font-size: 2.4rem;
+    color: teal;
+    text-align: center;
+}
+
+.btn {
+  margin: 0.5rem;
+  padding: o.5rem;
 }
